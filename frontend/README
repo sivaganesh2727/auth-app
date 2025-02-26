@@ -1,0 +1,101 @@
+
+# Auth-MERN-App 🚀
+
+A **Full-Stack Authentication Application** built with **MERN (MongoDB, Express, React, Node.js)**. This project provides a **secure and user-friendly** authentication system, including **user registration, login, profile management**, and **JWT-based authentication**.
+
+## 🔥 Features
+
+✅ Secure **User Authentication** (Signup/Login)  
+✅ Password Hashing using **bcrypt**  
+✅ **JWT Authentication** for session handling  
+✅ **Profile Management** (Update user information)  
+✅ **Fully Responsive UI**  
+✅ **React Frontend + Node.js Backend**  
+✅ **MongoDB Database Integration**  
+✅ **Express Routing and Middleware**  
+✅ **RESTful API with Authentication**  
+
+---
+
+## 🏗️ Tech Stack
+
+- **Frontend:** React.js, React Router, Axios  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB with Mongoose ORM  
+- **Authentication:** JSON Web Tokens (JWT), bcrypt  
+- **Middleware:** Express Validator, CORS, Morgan  
+
+---
+
+## 🚀 Project Setup
+
+### **Step 1: Clone the Repository**
+```bash
+git clone https://github.com/your-username/Auth-Mern-App.git
+cd Auth-Mern-App
+Step 2: Install Dependencies
+Frontend Setup
+cd frontend
+npm install
+
+Backend Setup
+cd ../backend
+npm install
+
+Step 3: Create Environment Variables
+Create a .env file inside the backend/ folder and add the following:
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+PORT=5000
+
+🛠️ Running the Application
+Start the Backend
+cd backend
+npm run dev
+Start the Frontend
+cd frontend
+npm start
+🌍 Visit: http://localhost:3000
+
+📂 Project Structure
+Frontend (React)
+frontend/
+│── src/
+│   ├── pages/         # Application routes and components
+│   │   ├── Home.js    # Home Page
+│   │   ├── Login.js   # Login Page
+│   │   ├── Signup.js  # Signup Page
+│   ├── utils/        # Reusable utility functions
+│   ├── App.js        # Main App component
+│   ├── index.js      # Entry Point
+│── public/           # Static assets (CSS, images)
+│── package.json      # Frontend dependencies
+
+Backend (Node.js + Express)
+backend/
+│── controllers/       # Business logic for user authentication
+│── middlewares/       # Authentication and validation middleware
+│── models/           # MongoDB database models (User schema)
+│── routes/           # API routes (AuthRouter.js)
+│── index.js          # Main server file
+│── .env              # Environment variables
+│── package.json      # Backend dependencies
+
+🔗 Connecting Frontend & Backend
+Inside frontend/src/utils/api.js, update your backend API URL:
+export const API_URL = "http://localhost:5000/api";
+Ensure CORS is enabled in the backend (index.js):
+app.use(cors({
+    origin: "http://localhost:3000",
+    credentials: true
+}));
+
+🛠️ Tools Used
+✅ React.js - Frontend UI
+✅ Node.js - Backend Runtime
+✅ Express.js - Server Framework
+✅ MongoDB - Database
+✅ Mongoose - ODM for MongoDB
+✅ JWT - Secure Authentication
+✅ bcrypt - Password Hashing
+✅ Axios - HTTP Client
