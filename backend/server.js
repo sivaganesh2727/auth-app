@@ -17,6 +17,11 @@ app.use(express.urlencoded({ extended: true }));
 
 console.log("✅ Server setup initialized");
 
+// ✅ Root Route to Fix "Cannot GET /" Error
+app.get("/", (req, res) => {
+  res.send("🚀 Backend is running successfully!");
+});
+
 // ✅ API Routes
 app.use("/auth", AuthRouter);
 
