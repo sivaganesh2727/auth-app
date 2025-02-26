@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import axios from 'axios';
-import './Signup.css'; // Import CSS file
+import './Signup.css';
 
 const Signup = () => {
     const navigate = useNavigate();
@@ -13,28 +13,23 @@ const Signup = () => {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (!formData.name || !formData.email || !formData.password) {
-            toast.error('All fields are required!');
+            toast.error('All fields are required!', { position: "top-right" });
             return;
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/auth/signup', formData);
+            const response = await axios.post('http://localhost:8080/api/auth/signup', formData);
             toast.success(response.data.message || 'Signup successful! Please login.', { position: "top-right" });
             navigate('/login');
         } catch (error) {
-            if (error.response?.status === 400) {
-                toast.warn('Already registered! Please login.', { position: "top-right" });
-            } else {
-                toast.error(error.response?.data?.message || 'Signup failed!', { position: "top-right" });
-            }
+            toast.error(error.response?.data?.message || 'Signup failed!', { position: "top-right" });
         }
     };
 
@@ -71,8 +66,6 @@ const Signup = () => {
             <div className="signup-link">
                 Already have an account? <Link to="/login">Login</Link>
             </div>
-
-            {/* Footer */}
             <div className="footer">© 2025 Your App Name. All Rights Reserved.</div>
         </div>
     );

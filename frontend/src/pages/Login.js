@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 import axios from 'axios';
-import './Signup.css'; // Reuse the same CSS
+import 'react-toastify/dist/ReactToastify.css';
+import './Signup.css';
 
 const Login = () => {
     const navigate = useNavigate();
@@ -13,8 +13,7 @@ const Login = () => {
     });
 
     const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
+        setFormData({ ...formData, [e.target.name]: e.target.value });
     };
 
     const handleSubmit = async (e) => {
@@ -26,16 +25,13 @@ const Login = () => {
         }
 
         try {
-            const response = await axios.post('http://localhost:8080/auth/login', formData);
+            const response = await axios.post('http://localhost:8080/api/auth/login', formData);
             toast.success(response.data.message || 'Login successful!', { position: "top-right" });
 
-            // Save token to localStorage
-            localStorage.setItem('token', response.data.token);
-
-            // Redirect to Home page
+            localStorage.setItem('token', response.data.token); // Store token
             navigate('/home');
         } catch (error) {
-            toast.error(error.response?.data?.message || 'Login failed! Invalid credentials.', { position: "top-right" });
+            toast.error(error.response?.data?.message || 'Login failed!', { position: "top-right" });
         }
     };
 
@@ -64,8 +60,6 @@ const Login = () => {
             <div className="signup-link">
                 Don't have an account? <Link to="/signup">Signup</Link>
             </div>
-
-            {/* Footer */}
             <div className="footer">© 2025 Your App Name. All Rights Reserved.</div>
         </div>
     );
